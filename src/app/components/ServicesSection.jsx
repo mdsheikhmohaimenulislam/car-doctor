@@ -15,12 +15,12 @@ export default function ServicesSection() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 w-11/12 mx-auto">
         {services.map((service) => {
           return (
             <div key={service._id} className="card bg-base-100 shadow-sm">
               <figure>
-                <Image width={60} height={60} src={service.img} />
+                <Image width={400} height={120} src={service.img} alt="image" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{service.title}</h2>
