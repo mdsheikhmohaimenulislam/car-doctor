@@ -1,6 +1,7 @@
-
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 import Image from "next/image";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 // import { useEffect, useState } from "react";
 
 export default async function ServicesSection() {
@@ -12,7 +13,7 @@ export default async function ServicesSection() {
   //     .then((data) => setServices(data));
   // }, []);
 
-  const servicesCollection = dbConnect("services");
+  const servicesCollection = dbConnect(collectionNameObj.servicesCollection);
 
   const services = await servicesCollection.find({}).toArray();
 
@@ -26,13 +27,14 @@ export default async function ServicesSection() {
                 <Image width={400} height={120} src={service.img} alt="image" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">{service.title}</h2>
-                <p>
-                  A card component has a figure, a body part, and inside body
-                  there are title and actions parts
-                </p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Buy Now</button>
+                <div className="flex justify-between">
+                  <div>
+                    <h2 className="card-title">{service.title}</h2>
+                    <p className="text-orange-400 font-bold text-xl">{service.price}</p>
+                  </div>
+                  <Link href={`/services/${service._id}`} className="text-orange-400 font-bold text-xl mt-5">
+                    <FaArrowRight />
+                  </Link>
                 </div>
               </div>
             </div>
