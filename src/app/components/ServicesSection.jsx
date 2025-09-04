@@ -1,17 +1,20 @@
-"use client";
+
+import dbConnect from "@/lib/dbConnect";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-export default function ServicesSection() {
-  const [services, setServices] = useState([]);
+export default async function ServicesSection() {
+  // const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    fetch("/services.json") //  works in browser
-      .then((res) => res.json())
-      .then((data) => setServices(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/services.json") //  works in browser
+  //     .then((res) => res.json())
+  //     .then((data) => setServices(data));
+  // }, []);
 
-  console.log(services);
+  const servicesCollection = dbConnect("services");
+
+  const services = await servicesCollection.find({}).toArray();
 
   return (
     <div>
