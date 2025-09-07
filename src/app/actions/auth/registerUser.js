@@ -12,7 +12,7 @@ export default async function registerUser(payload) {
 
   if (!user) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    payload.password = hashedPassword; 
+    payload.password = hashedPassword;
     const result = await userCollection.insertOne(payload);
     const { _id, insertedId, acknowledged } = result;
     return { _id, insertedId, acknowledged };
