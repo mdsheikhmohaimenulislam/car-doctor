@@ -14,8 +14,8 @@ export default async function registerUser(payload) {
     const hashedPassword = await bcrypt.hash(password, 10);
     payload.password = hashedPassword;
     const result = await userCollection.insertOne(payload);
-    const { _id, insertedId, acknowledged } = result;
-    return { _id, insertedId, acknowledged };
+    const { insertedId, acknowledged } = result;
+    return { insertedId, acknowledged };
   }
   return { success: false };
 }
