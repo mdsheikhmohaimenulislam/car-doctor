@@ -12,7 +12,7 @@ export default function Navbar() {
       <div className="navbar  w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -41,11 +41,11 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <Link href="/" className="text-xl">
-            <Image  alt="logo"   width={60} height={60} src={'/assets/logo.svg'}/>
+          <Link href="/" className="text-xl hidden md:block">
+            <Image  className="w-16 h-auto"   alt="logo"   width={60} height={60} src={'/assets/logo.svg'}/>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden md:block lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link href="/">Home</Link>
