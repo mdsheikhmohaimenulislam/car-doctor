@@ -1,11 +1,17 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
 
-
-
+  const handleLogOut = () => {
+    signOut();
+    toast.success("Log Out Successfully");
+  };
 
   return (
     <div className="bg-base-100 shadow-sm sticky z-1 top-0">
@@ -42,7 +48,13 @@ export default function Navbar() {
             </ul>
           </div>
           <Link href="/" className="text-xl hidden md:block">
-            <Image  className="w-16 h-auto"   alt="logo"   width={60} height={60} src={'/assets/logo.svg'}/>
+            <Image
+              className="w-16 h-auto"
+              alt="logo"
+              width={60}
+              height={60}
+              src={"/assets/logo.svg"}
+            />
           </Link>
         </div>
         <div className="navbar-center hidden md:block lg:flex">
@@ -64,8 +76,23 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn btn-outline ">Appointment</a>
+        <div className="navbar-end gap-2">
+          {status == "authenticated" ? (
+            <>
+              <li onClick={handleLogOut} className="btn ">
+                Log Out
+              </li>
+            </>
+          ) : (
+            <>
+              <Link className="btn " href={"/register"}>
+                Register
+              </Link>
+              <Link className="btn " href={"/login"}>
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
