@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
+  console.log(session);
+  // console.log(session.user.image);
 
   const handleLogOut = () => {
     signOut();
@@ -79,6 +81,15 @@ export default function Navbar() {
         <div className="navbar-end gap-2">
           {status == "authenticated" ? (
             <>
+              <div>
+                <Image
+                  className="rounded-full"
+                  src={session?.user?.image}
+                  alt="logo"
+                  width={40}
+                  height={40}
+                />
+              </div>
               <li onClick={handleLogOut} className="btn ">
                 Log Out
               </li>
