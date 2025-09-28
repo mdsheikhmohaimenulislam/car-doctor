@@ -13,7 +13,7 @@ export default function SocialLogin() {
 
   const handleSocialLogin = async (providerName) => {
     const result = await signIn(providerName, { redirect: false });
-    console.log(result)
+    console.log(result);
   };
 
   //   useEffect(() => {
